@@ -43,10 +43,16 @@
                 powerPreference: 'low-power'
             };
             the_glsl = new glsl.Canvas(canvas, options);
+
+            const basePath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+            const shaderFilePath = `${basePath}/shaders/${shaderFile}`;
+            console.log(window.location.pathname);
+            console.log(basePath);
+            console.log(shaderFilePath);
             fetch(shaderFile)
                 .then(response => {
                     if (!response.ok) {
-                        const likely_path = `shaders/${shaderFile}`
+                        const likely_path = `${basePath}/shaders/${shaderFile}`
                         console.log(`First attempt failed: ${shaderFile}, trying modified path: ${likely_path}`);
                         return fetch(likely_path);
                     }
