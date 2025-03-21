@@ -21,10 +21,11 @@
 </head>
 
 <body>
-    <canvas class="glsl-canvas"></canvas>
+    <canvas></canvas>
 
     <script>
         const canvas = document.querySelector('canvas');
+        const gl = canvas.getContext("webgl2");
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
