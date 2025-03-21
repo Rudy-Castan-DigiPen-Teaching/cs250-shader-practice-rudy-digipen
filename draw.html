@@ -1,72 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Shader Fun</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDENT NAME Shader Fun</title>
     <style>
-        body {
+        body, html {
             margin: 0;
+            width: 100%;
+            height: 100%;
             overflow: hidden;
         }
 
         canvas {
             display: block;
+            width: 100%;
+            height: 100%;
         }
     </style>
-
-    <script type="text/javascript" src="js/glsl-canvas.min.js"></script>
 </head>
 
 <body>
-    <script>
-        const canvas = document.createElement('canvas');
-        const gl = canvas.getContext("webgl2");
-        const options = {
-            alpha: false,
-            antialias: true,
-            mode: 'flat',
-            powerPreference: 'low-power'
-        };
-        const the_glsl = new glsl.Canvas(canvas, options);
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const shaderFile = urlParams.get('shader') || '00_color.frag';
-
-        fetch(shaderFile)
-            .then(response => {
-                if (!response.ok) {
-                    const basePath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-                    const likely_path = `${basePath}shaders/${shaderFile}`
-                    console.log(`First attempt failed: ${shaderFile}, trying modified path: ${likely_path}`);
-                    return fetch(likely_path);
-                }
-                return response;
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.text();
-            })
-            .then(shaderCode => {
-                console.log(shaderCode);
-                the_glsl.load(shaderCode);
-            })
-            .catch(error => {
-                console.error('Error loading shader:', error);
-            });
-
-    </script>
+    <canvas id="glCanvas"></canvas>
+    <script src="js/fun.js"></script>
 </body>
 
 </html>
