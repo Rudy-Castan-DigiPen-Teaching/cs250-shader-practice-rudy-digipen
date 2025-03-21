@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <canvas class="glsl-canvas" data-fragment-url="/shaders/00_color.frag"></canvas>
+    <canvas class="glsl-canvas" data-fragment-url="shaders/00_color.frag"></canvas>
 
     <script>
         const canvas = document.querySelector('canvas');
@@ -46,7 +46,7 @@
             fetch(shaderFile)
                 .then(response => {
                     if (!response.ok) {
-                        const likely_path = `/shaders/${shaderFile}`
+                        const likely_path = `shaders/${shaderFile}`
                         console.log(`First attempt failed: ${shaderFile}, trying modified path: ${likely_path}`);
                         return fetch(likely_path);
                     }
