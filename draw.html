@@ -21,11 +21,16 @@
 </head>
 
 <body>
-    <canvas></canvas>
-
     <script>
-        const canvas = document.querySelector('canvas');
+        const canvas = document.createElement('canvas');
         const gl = canvas.getContext("webgl2");
+        const options = {
+            alpha: false,
+            antialias: true,
+            mode: 'flat',
+            powerPreference: 'low-power'
+        };
+        const the_glsl = new glsl.Canvas(canvas, options);
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
@@ -33,15 +38,9 @@
         }
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
+
         const urlParams = new URLSearchParams(window.location.search);
         const shaderFile = urlParams.get('shader') || '00_color.frag';
-        const options = {
-            alpha: false,
-            antialias: true,
-            mode: 'flat',
-            powerPreference: 'low-power'
-        };
-        var the_glsl = new glsl.Canvas(canvas, options);
 
         fetch(shaderFile)
             .then(response => {
