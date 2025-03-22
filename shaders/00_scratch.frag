@@ -10,10 +10,13 @@ precision mediump float;
  * \copyright DigiPen Institute of Technology
  */
 
+ uniform vec2 u_resolution;
+
 
 out vec4 FragColor;
 
 void main()
 {
-    FragColor = vec4(0.3451, 0.1725, 0.6706, 1.0);
+    vec2 st = gl_FragCoord.xy / u_resolution;
+    FragColor = vec4(st, 0, 1.0);
 }
